@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Electrify"
+run/main_scene="res://script/game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://image/icon.svg"
 
 [display]
 
-window/size/viewport_width=500
-window/size/viewport_height=1000
+window/size/viewport_width=1080
+window/size/viewport_height=1920
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
