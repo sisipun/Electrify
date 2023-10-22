@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvovdcr5uxyb5"]
+
+[ext_resource type="Texture2D" uid="uid://ctha0p0dasaaa" path="res://image/level/station/station.svg" id="1_2nlov"]
+[ext_resource type="Script" path="res://script/level/station/station.gd" id="1_6c4ox"]
+[ext_resource type="Texture2D" uid="uid://dt4qbjvhs8qxu" path="res://image/level/station/zone.svg" id="2_g0x5x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ug1a1"]
+radius = 128.0
+
+[node name="Station" type="Area2D"]
+script = ExtResource("1_6c4ox")
+_shape_path = NodePath("Shape")
+_zone_path = NodePath("Zone")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ug1a1")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_2nlov")
+
+[node name="Zone" type="Sprite2D" parent="."]
+texture = ExtResource("2_g0x5x")
