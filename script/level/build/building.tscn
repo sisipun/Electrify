@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dokjxdo0mwijs"]
+
+[ext_resource type="Script" path="res://script/level/build/building.gd" id="1_v4s1l"]
+[ext_resource type="Texture2D" uid="uid://nbwda8kidux1" path="res://image/level/building/jumper.svg" id="1_wss81"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qphr5"]
+radius = 64.0
+
+[node name="Building" type="Area2D"]
+script = ExtResource("1_v4s1l")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qphr5")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_wss81")

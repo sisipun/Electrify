@@ -1,22 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvovdcr5uxyb5"]
+[gd_scene load_steps=5 format=3 uid="uid://0p72am0ws48r"]
 
 [ext_resource type="Texture2D" uid="uid://ctha0p0dasaaa" path="res://image/level/station/station.svg" id="1_2nlov"]
 [ext_resource type="Script" path="res://script/level/station/station.gd" id="1_6c4ox"]
-[ext_resource type="Texture2D" uid="uid://dt4qbjvhs8qxu" path="res://image/level/station/zone.svg" id="2_g0x5x"]
+[ext_resource type="PackedScene" uid="uid://b1h76h6weete2" path="res://script/level/station/station_zone.tscn" id="2_wsng2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ug1a1"]
-radius = 128.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ln61"]
+radius = 64.0
 
 [node name="Station" type="Area2D"]
 script = ExtResource("1_6c4ox")
-_shape_path = NodePath("Shape")
 _zone_path = NodePath("Zone")
 
+[node name="Zone" parent="." instance=ExtResource("2_wsng2")]
+
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ug1a1")
+shape = SubResource("CircleShape2D_6ln61")
 
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("1_2nlov")
-
-[node name="Zone" type="Sprite2D" parent="."]
-texture = ExtResource("2_g0x5x")
