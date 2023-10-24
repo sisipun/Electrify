@@ -16,3 +16,8 @@ func _ready() -> void:
 
 func _on_window_size_changed() -> void:
 	position = get_viewport_rect().size / 2
+
+
+func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventScreenTouch and event.is_pressed():
+		_station.global_position = event.position

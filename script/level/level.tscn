@@ -21,5 +21,11 @@ shape = SubResource("RectangleShape2D_qohh0")
 
 [node name="Buldings" type="Node2D" parent="."]
 
-[node name="Building" parent="Buldings" instance=ExtResource("3_kcew0")]
+[node name="Building1" parent="Buldings" instance=ExtResource("3_kcew0")]
 position = Vector2(249, 227)
+
+[node name="Building2" parent="Buldings" instance=ExtResource("3_kcew0")]
+position = Vector2(381, -95)
+
+[node name="Building3" parent="Buldings" instance=ExtResource("3_kcew0")]
+position = Vector2(-421, -416)
