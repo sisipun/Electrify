@@ -13,7 +13,7 @@ config_version=5
 config/name="Electrify"
 run/main_scene="res://script/game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://image/icon/icon.svg"
+config/icon="res://asset/image/icon/icon.svg"
 
 [display]
 

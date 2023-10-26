@@ -18,11 +18,9 @@ func init(zone_radius: float) -> void:
 
 func _on_building_entered(building: Building) -> void:
 	buildings.append(building)
-	print('entered')
-	print(buildings.size())
+	building.activate()
 
 
 func _on_building_exited(building: Building) -> void:
 	buildings.remove_at(buildings.find(building))
-	print('exited')
-	print(buildings.size())
+	building.deactivate()

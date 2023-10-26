@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt4qbjvhs8qxu"
-path="res://.godot/imported/zone.svg-e75a75572f19b2007189ea0bb4636dcd.ctex"
+uid="uid://cqp18fkrebk2"
+path="res://.godot/imported/building_effect_default.svg-52ebc32246a38743cf3a93beb4743735.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/level/station/zone.svg"
-dest_files=["res://.godot/imported/zone.svg-e75a75572f19b2007189ea0bb4636dcd.ctex"]
+source_file="res://asset/image/level/building/effect/building_effect_default.svg"
+dest_files=["res://.godot/imported/building_effect_default.svg-52ebc32246a38743cf3a93beb4743735.ctex"]
 
 [params]
 

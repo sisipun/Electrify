@@ -1,16 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://dokjxdo0mwijs"]
+[gd_scene load_steps=9 format=3 uid="uid://dokjxdo0mwijs"]
 
 [ext_resource type="Script" path="res://script/level/build/building.gd" id="1_v4s1l"]
-[ext_resource type="Texture2D" uid="uid://nbwda8kidux1" path="res://image/level/building/jumper.svg" id="1_wss81"]
+[ext_resource type="Texture2D" uid="uid://nbwda8kidux1" path="res://asset/image/level/building/building.svg" id="2_g136q"]
+[ext_resource type="Texture2D" uid="uid://duldrmibgd5no" path="res://asset/image/level/building/building_active.svg" id="2_sq0f1"]
+[ext_resource type="Texture2D" uid="uid://cqp18fkrebk2" path="res://asset/image/level/building/effect/building_effect_default.svg" id="4_s3vcm"]
+[ext_resource type="Texture2D" uid="uid://3lrqf5wsuyv1" path="res://asset/image/level/building/effect/building_effect_preview.svg" id="5_nvd5x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qphr5"]
 radius = 64.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dvwp3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sq0f1")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g136q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8qmf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_s3vcm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nvd5x")
+}],
+"loop": true,
+"name": &"preview",
+"speed": 5.0
+}]
+
 [node name="Building" type="Area2D"]
 script = ExtResource("1_v4s1l")
+_body_path = NodePath("Body")
+_effect_path = NodePath("Effect")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qphr5")
 
-[node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("1_wss81")
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dvwp3")
+
+[node name="Effect" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h8qmf")
