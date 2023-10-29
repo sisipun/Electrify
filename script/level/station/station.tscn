@@ -9,10 +9,10 @@ radius = 64.0
 
 [node name="Station" type="Area2D"]
 script = ExtResource("1_6c4ox")
-_zone_path = NodePath("Zone")
+_zone_path = NodePath("StationZone")
 _power = 1
 
-[node name="Zone" parent="." instance=ExtResource("2_wsng2")]
+[node name="StationZone" parent="." instance=ExtResource("2_wsng2")]
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6ln61")

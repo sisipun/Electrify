@@ -13,13 +13,15 @@ signal building_exited(building)
 @onready var _body: Sprite2D = get_node(_body_path)
 
 
+func _ready() -> void:
+	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
+
+
 func init(radius: float) -> void:
 	var _scale = radius / _shape.shape.radius
 	_body.scale = Vector2(_scale, _scale)
-	_shape.shape.radius = radius
-	
-	area_entered.connect(_on_area_entered)
-	area_exited.connect(_on_area_exited)
+	$Shape.shape.radius = radius
 
 
 func _on_area_entered(area: Area2D) -> void:

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dt4qbjvhs8qxu" path="res://asset/image/level/station/zone.svg" id="2_6nid1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ug1a1"]
+resource_local_to_scene = true
 radius = 128.0
 
 [node name="StationZone" type="Area2D"]

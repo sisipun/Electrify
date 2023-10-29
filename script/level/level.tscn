@@ -11,6 +11,8 @@ size = Vector2(1000, 1000)
 position = Vector2(540, 960)
 script = ExtResource("1_dwq8f")
 _station_path = NodePath("Stations/Station")
+_stations_node_path = NodePath("Stations")
+_buildings_node_path = NodePath("Buldings")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qohh0")
@@ -18,6 +20,10 @@ shape = SubResource("RectangleShape2D_qohh0")
 [node name="Stations" type="Node2D" parent="."]
 
 [node name="Station" parent="Stations" instance=ExtResource("2_781vj")]
+position = Vector2(76, 90)
+
+[node name="Station2" parent="Stations" instance=ExtResource("2_781vj")]
+position = Vector2(-282, -295)
 
 [node name="Buldings" type="Node2D" parent="."]
 
