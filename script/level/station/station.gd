@@ -26,6 +26,11 @@ func init(zone_radius: float) -> void:
 	_zone.building_exited.connect(_on_building_exited)
 
 
+func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventScreenDrag:
+		position += event.relative
+
+
 func _on_building_entered(building: Building) -> void:
 	buildings.append(building)
 	building.increase_power(_power)
