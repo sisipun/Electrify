@@ -2,6 +2,7 @@ class_name Station
 extends Area2D
 
 
+signal pressed
 signal building_entered(building)
 signal building_exited(building)
 
@@ -27,8 +28,8 @@ func init(zone_radius: float) -> void:
 
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventScreenDrag:
-		position += event.relative
+	if event is InputEventScreenTouch and event.pressed:
+		emit_signal("pressed")
 
 
 func _on_building_entered(building: Building) -> void:

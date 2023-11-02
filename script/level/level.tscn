@@ -10,6 +10,7 @@ size = Vector2(1000, 1000)
 [node name="Level" type="Area2D"]
 position = Vector2(540, 960)
 script = ExtResource("1_dwq8f")
+_shape_path = NodePath("Shape")
 _stations_node_path = NodePath("Stations")
 _buildings_node_path = NodePath("Buldings")
 
