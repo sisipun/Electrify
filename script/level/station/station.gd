@@ -27,6 +27,10 @@ func init(zone_radius: float) -> void:
 	_zone.building_exited.connect(_on_building_exited)
 
 
+func move_to(new_position: Vector2) -> void:
+	position = new_position
+
+
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventScreenTouch and event.pressed:
 		emit_signal("pressed")

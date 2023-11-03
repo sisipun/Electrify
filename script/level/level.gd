@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and not event.pressed:
 		_on_station_released()
 	if event is InputEventScreenDrag and _selected_station:
-		_selected_station.position += event.relative
+		var new_position = _selected_station.position + event.relative
 		
 		var size: Vector2 = _shape.shape.get_rect().size / 2
 		if _selected_station.position.x > size.x:
@@ -56,6 +56,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			_selected_station.position.y = size.y
 		elif _selected_station.position.y < -size.y:
 			_selected_station.position.y = -size.y
+		
+		_selected_station.move_to(new_position)
 
 
 func _on_window_size_changed() -> void:

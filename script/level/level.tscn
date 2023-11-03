@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://civmld8jgj43g"]
+[gd_scene load_steps=6 format=3 uid="uid://civmld8jgj43g"]
 
 [ext_resource type="Script" path="res://script/level/level.gd" id="1_dwq8f"]
 [ext_resource type="PackedScene" uid="uid://0p72am0ws48r" path="res://script/level/station/station.tscn" id="2_781vj"]
 [ext_resource type="PackedScene" uid="uid://dokjxdo0mwijs" path="res://script/level/build/building.tscn" id="3_kcew0"]
+[ext_resource type="PackedScene" uid="uid://dv88gepvc0aba" path="res://script/level/station/station_point.tscn" id="4_abvtj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qohh0"]
 size = Vector2(1000, 1000)
@@ -35,3 +36,11 @@ position = Vector2(381, -95)
 
 [node name="Building3" parent="Buldings" instance=ExtResource("3_kcew0")]
 position = Vector2(-421, -416)
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="StationPoint" parent="Points" instance=ExtResource("4_abvtj")]
+position = Vector2(256, 46)
+
+[node name="StationPoint2" parent="Points" instance=ExtResource("4_abvtj")]
+position = Vector2(-367, -256)

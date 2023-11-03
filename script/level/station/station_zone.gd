@@ -21,7 +21,7 @@ func _ready() -> void:
 func init(radius: float) -> void:
 	var _scale = radius / _shape.shape.radius
 	_body.scale = Vector2(_scale, _scale)
-	$Shape.shape.radius = radius
+	_shape.shape.radius = radius
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -32,5 +32,3 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if area is Building:
 		emit_signal("building_exited", area as Building)
-
-
