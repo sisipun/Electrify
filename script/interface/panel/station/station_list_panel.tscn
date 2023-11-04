@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://x3t4tisbkbcj"]
+
+[ext_resource type="PackedScene" uid="uid://dblvp6eu31chm" path="res://script/interface/common/component/container/drag_scroll/drag_scroll_container.tscn" id="1_yyo3t"]
+[ext_resource type="PackedScene" uid="uid://ceeklw0avuh5r" path="res://script/interface/panel/station_definition.tscn" id="2_h815n"]
+
+[node name="StationList" type="Control"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DragScrollContainer" parent="." instance=ExtResource("1_yyo3t")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="DragScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="DragScrollContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="Definitions" type="HBoxContainer" parent="DragScrollContainer/CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="StationDefinition" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+layout_mode = 2
+
+[node name="StationDefinition2" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+layout_mode = 2
+
+[node name="StationDefinition3" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+layout_mode = 2
+
+[node name="StationDefinition4" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+layout_mode = 2
+
+[node name="StationDefinition5" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+layout_mode = 2
+
+[node name="StationDefinition6" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+layout_mode = 2
+
+[node name="StationDefinition7" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+layout_mode = 2

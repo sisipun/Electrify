@@ -1,9 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2kb26jw5eyle"]
+[gd_scene load_steps=4 format=3 uid="uid://c2kb26jw5eyle"]
 
 [ext_resource type="PackedScene" uid="uid://civmld8jgj43g" path="res://script/level/level.tscn" id="1_qe6p7"]
+[ext_resource type="PackedScene" uid="uid://bfuyhl76347oj" path="res://script/interface/interface.tscn" id="2_ulcvg"]
+[ext_resource type="PackedScene" uid="uid://x3t4tisbkbcj" path="res://script/interface/panel/station/station_list_panel.tscn" id="3_t84e3"]
 
 [node name="Game" type="Node"]
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Backfround" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.976471, 0.933333, 0.705882, 1)
 
 [node name="LevelLayer" type="CanvasLayer" parent="."]
 
 [node name="Level" parent="LevelLayer" instance=ExtResource("1_qe6p7")]
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Interface" parent="InterfaceLayer" instance=ExtResource("2_ulcvg")]
+
+[node name="StationList" parent="InterfaceLayer/Interface" instance=ExtResource("3_t84e3")]
+layout_mode = 1

@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceeklw0avuh5r"]
+
+[ext_resource type="Script" path="res://script/interface/panel/station/station_definition.gd" id="1_vi62g"]
+[ext_resource type="Texture2D" uid="uid://ctha0p0dasaaa" path="res://asset/image/level/station/station.svg" id="1_ysehr"]
+
+[node name="StationDefinition" type="Panel"]
+custom_minimum_size = Vector2(150, 150)
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("1_vi62g")
+
+[node name="Body" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.5
+offset_top = 25.0
+offset_right = 37.5
+offset_bottom = 100.0
+grow_horizontal = 2
+texture = ExtResource("1_ysehr")
+
+[node name="Count" type="Label" parent="."]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.5
+offset_top = -40.0
+offset_right = 37.5
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
