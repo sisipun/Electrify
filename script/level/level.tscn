@@ -14,17 +14,13 @@ script = ExtResource("1_dwq8f")
 _shape_path = NodePath("Shape")
 _stations_node_path = NodePath("Stations")
 _buildings_node_path = NodePath("Buldings")
+_points_node_path = NodePath("Points")
+_station_scene = ExtResource("2_781vj")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qohh0")
 
 [node name="Stations" type="Node2D" parent="."]
-
-[node name="Station" parent="Stations" instance=ExtResource("2_781vj")]
-position = Vector2(76, 90)
-
-[node name="Station2" parent="Stations" instance=ExtResource("2_781vj")]
-position = Vector2(-282, -295)
 
 [node name="Buldings" type="Node2D" parent="."]
 

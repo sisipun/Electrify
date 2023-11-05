@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://x3t4tisbkbcj"]
 
-[ext_resource type="PackedScene" uid="uid://dblvp6eu31chm" path="res://script/interface/common/component/container/drag_scroll/drag_scroll_container.tscn" id="1_yyo3t"]
-[ext_resource type="PackedScene" uid="uid://ceeklw0avuh5r" path="res://script/interface/panel/station_definition.tscn" id="2_h815n"]
+[ext_resource type="Script" path="res://script/interface/panel/station/station_list_panel.gd" id="1_7csx3"]
+[ext_resource type="PackedScene" uid="uid://ceeklw0avuh5r" path="res://script/interface/panel/station/station_definition.tscn" id="2_h815n"]
 
-[node name="StationList" type="Control"]
+[node name="StationListPanel" type="Control"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 3
 anchors_preset = 12
@@ -12,48 +12,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
+script = ExtResource("1_7csx3")
+_definitions_node_path = NodePath("CenterContainer/MarginContainer/Definitions")
 
-[node name="DragScrollContainer" parent="." instance=ExtResource("1_yyo3t")]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -150.0
 grow_horizontal = 2
-grow_vertical = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="DragScrollContainer"]
-layout_mode = 2
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="DragScrollContainer/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 
-[node name="Definitions" type="HBoxContainer" parent="DragScrollContainer/CenterContainer/MarginContainer"]
+[node name="Definitions" type="HBoxContainer" parent="CenterContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="StationDefinition" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+[node name="StationDefinition" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
 layout_mode = 2
 
-[node name="StationDefinition2" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+[node name="StationDefinition2" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
 layout_mode = 2
 
-[node name="StationDefinition3" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+[node name="StationDefinition3" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
 layout_mode = 2
 
-[node name="StationDefinition4" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+[node name="StationDefinition4" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
 layout_mode = 2
 
-[node name="StationDefinition5" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
-layout_mode = 2
-
-[node name="StationDefinition6" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
-layout_mode = 2
-
-[node name="StationDefinition7" parent="DragScrollContainer/CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
+[node name="StationDefinition5" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
 layout_mode = 2

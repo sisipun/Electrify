@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2kb26jw5eyle"]
+[gd_scene load_steps=5 format=3 uid="uid://c2kb26jw5eyle"]
 
 [ext_resource type="PackedScene" uid="uid://civmld8jgj43g" path="res://script/level/level.tscn" id="1_qe6p7"]
 [ext_resource type="PackedScene" uid="uid://bfuyhl76347oj" path="res://script/interface/interface.tscn" id="2_ulcvg"]
 [ext_resource type="PackedScene" uid="uid://x3t4tisbkbcj" path="res://script/interface/panel/station/station_list_panel.tscn" id="3_t84e3"]
+[ext_resource type="PackedScene" uid="uid://dekjoya4s7qjg" path="res://script/interface/common/component/container/drag_and_drop/drag_and_drop.tscn" id="4_jwuvk"]
 
 [node name="Game" type="Node"]
 
@@ -28,3 +29,7 @@ layer = 2
 
 [node name="StationList" parent="InterfaceLayer/Interface" instance=ExtResource("3_t84e3")]
 layout_mode = 1
+
+[node name="DragAndDrop" parent="." instance=ExtResource("4_jwuvk")]
+_drag_zone_path = NodePath("../InterfaceLayer/Interface/StationList")
+_drop_zone_path = NodePath("../LevelLayer/Level")

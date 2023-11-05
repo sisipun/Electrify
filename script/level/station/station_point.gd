@@ -2,25 +2,21 @@ class_name StationPoint
 extends Area2D
 
 
-var entered_station: Station
+@export_node_path("CollisionShape2D") var _shape_node_path: NodePath
+
+@onready var _shape: CollisionShape2D = get_node(_shape_node_path)
+
+var _station: Station
 
 
 func _ready() -> void:
-	area_entered.connect(_on_area_entered)
-	area_exited.connect(_on_area_exited)
-	entered_station = null
+	_station = null
 
 
-func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventScreenTouch and not event.pressed and entered_station:
-		entered_station.move_to(position)
+func can_add_station(_global_position: Vector2) -> bool:
+	return not _station and _shape.shape.get_rect().has_point(to_local(_global_position))
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if not entered_station and area is Station:
-		entered_station = area
-
-
-func _on_area_exited(area: Area2D) -> void:
-	if entered_station and area == entered_station:
-		entered_station = null
+func add_station(station: Station) -> void:
+	_station = station
+	_station.move_to(position)

@@ -20,7 +20,8 @@ func _ready() -> void:
 	buildings = []
 
 
-func init(zone_radius: float) -> void:
+func init(_position: Vector2, zone_radius: float) -> void:
+	position = _position
 	_zone.init(zone_radius)
 	
 	_zone.building_entered.connect(_on_building_entered)

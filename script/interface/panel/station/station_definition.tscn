@@ -7,7 +7,9 @@
 custom_minimum_size = Vector2(150, 150)
 offset_right = 150.0
 offset_bottom = 150.0
+mouse_filter = 1
 script = ExtResource("1_vi62g")
+_count_label_node_path = NodePath("Count")
 
 [node name="Body" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(75, 75)
