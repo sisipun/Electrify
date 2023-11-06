@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dokjxdo0mwijs"]
 
-[ext_resource type="Script" path="res://script/level/build/building.gd" id="1_v4s1l"]
-[ext_resource type="Texture2D" uid="uid://nbwda8kidux1" path="res://asset/image/level/building/building.svg" id="2_g136q"]
-[ext_resource type="Texture2D" uid="uid://duldrmibgd5no" path="res://asset/image/level/building/building_active.svg" id="2_sq0f1"]
-[ext_resource type="Texture2D" uid="uid://cqp18fkrebk2" path="res://asset/image/level/building/effect/building_effect_default.svg" id="4_s3vcm"]
-[ext_resource type="Texture2D" uid="uid://3lrqf5wsuyv1" path="res://asset/image/level/building/effect/building_effect_preview.svg" id="5_nvd5x"]
+[ext_resource type="Script" path="res://script/level/building/building.gd" id="1_c7n5g"]
+[ext_resource type="Texture2D" uid="uid://duldrmibgd5no" path="res://asset/image/level/building/building_active.svg" id="2_lm8t3"]
+[ext_resource type="Texture2D" uid="uid://nbwda8kidux1" path="res://asset/image/level/building/building.svg" id="3_h3td0"]
+[ext_resource type="Texture2D" uid="uid://cqp18fkrebk2" path="res://asset/image/level/building/effect/building_effect_default.svg" id="4_h0g88"]
+[ext_resource type="Texture2D" uid="uid://3lrqf5wsuyv1" path="res://asset/image/level/building/effect/building_effect_preview.svg" id="5_rsyxg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qphr5"]
 radius = 64.0
@@ -13,7 +13,7 @@ radius = 64.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sq0f1")
+"texture": ExtResource("2_lm8t3")
 }],
 "loop": true,
 "name": &"active",
@@ -21,7 +21,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_g136q")
+"texture": ExtResource("3_h3td0")
 }],
 "loop": true,
 "name": &"default",
@@ -32,7 +32,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_s3vcm")
+"texture": ExtResource("4_h0g88")
 }],
 "loop": true,
 "name": &"default",
@@ -40,7 +40,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_nvd5x")
+"texture": ExtResource("5_rsyxg")
 }],
 "loop": true,
 "name": &"preview",
@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [node name="Building" type="Area2D"]
-script = ExtResource("1_v4s1l")
+script = ExtResource("1_c7n5g")
 _body_path = NodePath("Body")
 _effect_path = NodePath("Effect")
 _power_to_active = 1

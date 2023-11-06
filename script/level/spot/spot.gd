@@ -1,4 +1,4 @@
-class_name StationPoint
+class_name Spot
 extends Area2D
 
 

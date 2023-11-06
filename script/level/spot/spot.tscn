@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://dv88gepvc0aba"]
 
-[ext_resource type="Script" path="res://script/level/station/station_point.gd" id="1_2o4dw"]
-[ext_resource type="Texture2D" uid="uid://b7yacb5v70jaa" path="res://asset/image/level/station/point.svg" id="2_yu2po"]
+[ext_resource type="Script" path="res://script/level/spot/spot.gd" id="1_v4hb0"]
+[ext_resource type="Texture2D" uid="uid://b7yacb5v70jaa" path="res://asset/image/level/station/point.svg" id="2_j1pcj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w8rkw"]
 radius = 128.0
 
-[node name="StationPoint" type="Area2D"]
-script = ExtResource("1_2o4dw")
+[node name="Point" type="Area2D"]
+script = ExtResource("1_v4hb0")
 _shape_node_path = NodePath("Shape")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_w8rkw")
 
 [node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("2_yu2po")
+texture = ExtResource("2_j1pcj")

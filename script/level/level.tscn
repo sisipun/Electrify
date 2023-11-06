@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://script/level/level.gd" id="1_dwq8f"]
 [ext_resource type="PackedScene" uid="uid://0p72am0ws48r" path="res://script/level/station/station.tscn" id="2_781vj"]
-[ext_resource type="PackedScene" uid="uid://dokjxdo0mwijs" path="res://script/level/build/building.tscn" id="3_kcew0"]
-[ext_resource type="PackedScene" uid="uid://dv88gepvc0aba" path="res://script/level/station/station_point.tscn" id="4_abvtj"]
+[ext_resource type="PackedScene" uid="uid://dokjxdo0mwijs" path="res://script/level/building/building.tscn" id="3_kcew0"]
+[ext_resource type="PackedScene" uid="uid://dv88gepvc0aba" path="res://script/level/spot/spot.tscn" id="4_abvtj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qohh0"]
 size = Vector2(1000, 1000)
@@ -14,7 +14,7 @@ script = ExtResource("1_dwq8f")
 _shape_path = NodePath("Shape")
 _stations_node_path = NodePath("Stations")
 _buildings_node_path = NodePath("Buldings")
-_points_node_path = NodePath("Points")
+_spots_node_path = NodePath("Spots")
 _station_scene = ExtResource("2_781vj")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
@@ -33,10 +33,10 @@ position = Vector2(381, -95)
 [node name="Building3" parent="Buldings" instance=ExtResource("3_kcew0")]
 position = Vector2(-421, -416)
 
-[node name="Points" type="Node2D" parent="."]
+[node name="Spots" type="Node2D" parent="."]
 
-[node name="StationPoint" parent="Points" instance=ExtResource("4_abvtj")]
+[node name="Spot1" parent="Spots" instance=ExtResource("4_abvtj")]
 position = Vector2(256, 46)
 
-[node name="StationPoint2" parent="Points" instance=ExtResource("4_abvtj")]
+[node name="Spot2" parent="Spots" instance=ExtResource("4_abvtj")]
 position = Vector2(-367, -256)
