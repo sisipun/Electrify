@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://beyaxid72gk62"]
+
+[ext_resource type="Script" path="res://script/game_state/storage/station/station_storage.gd" id="1_nhg5s"]
+[ext_resource type="Resource" uid="uid://crb40d7tobrhe" path="res://asset/resource/station/default.tres" id="2_wt8a1"]
+[ext_resource type="Resource" uid="uid://bybahsf88pr3s" path="res://asset/resource/station/powerfull.tres" id="3_3wncd"]
+[ext_resource type="Resource" uid="uid://byln0nbiqyllv" path="res://asset/resource/station/wide.tres" id="4_ofnex"]
+
+[node name="StationStorage" type="Node"]
+script = ExtResource("1_nhg5s")
+default = ExtResource("2_wt8a1")
+powerfull = ExtResource("3_3wncd")
+wide = ExtResource("4_ofnex")

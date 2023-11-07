@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=2 format=3 uid="uid://cmmcj2s2eg3d2"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/building/building_resource.gd" id="1_tx63d"]
+
+[resource]
+script = ExtResource("1_tx63d")
+power_to_activate = 2

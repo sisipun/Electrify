@@ -18,6 +18,10 @@ config/icon="res://asset/image/icon/icon.svg"
 [autoload]
 
 Events="*res://script/game_state/storage/event/event_storage.gd"
+Spots="*res://script/game_state/storage/spot/spot_storage.tscn"
+Buildings="*res://script/game_state/storage/building/building_storage.tscn"
+Stations="*res://script/game_state/storage/station/station_storage.tscn"
+Levels="*res://script/game_state/storage/level/level_storage.tscn"
 
 [display]
 

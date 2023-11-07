@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8qr82v4sb4qs"]
+
+[ext_resource type="Script" path="res://script/game_state/storage/building/building_storage.gd" id="1_38q44"]
+[ext_resource type="Resource" uid="uid://ch3si6rshm41s" path="res://asset/resource/building/default.tres" id="2_plieu"]
+[ext_resource type="Resource" uid="uid://cmmcj2s2eg3d2" path="res://asset/resource/building/energy_inefficient.tres" id="3_orw8p"]
+
+[node name="BuildingStorage" type="Node"]
+script = ExtResource("1_38q44")
+default = ExtResource("2_plieu")
+energy_inefficient = ExtResource("3_orw8p")

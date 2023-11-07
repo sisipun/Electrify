@@ -16,6 +16,8 @@ _stations_node_path = NodePath("Stations")
 _buildings_node_path = NodePath("Buldings")
 _spots_node_path = NodePath("Spots")
 _station_scene = ExtResource("2_781vj")
+_building_scene = ExtResource("3_kcew0")
+_spot_scene = ExtResource("4_abvtj")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qohh0")
@@ -24,19 +26,4 @@ shape = SubResource("RectangleShape2D_qohh0")
 
 [node name="Buldings" type="Node2D" parent="."]
 
-[node name="Building1" parent="Buldings" instance=ExtResource("3_kcew0")]
-position = Vector2(249, 227)
-
-[node name="Building2" parent="Buldings" instance=ExtResource("3_kcew0")]
-position = Vector2(381, -95)
-
-[node name="Building3" parent="Buldings" instance=ExtResource("3_kcew0")]
-position = Vector2(-421, -416)
-
 [node name="Spots" type="Node2D" parent="."]
-
-[node name="Spot1" parent="Spots" instance=ExtResource("4_abvtj")]
-position = Vector2(256, 46)
-
-[node name="Spot2" parent="Spots" instance=ExtResource("4_abvtj")]
-position = Vector2(-367, -256)

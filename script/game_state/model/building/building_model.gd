@@ -4,5 +4,5 @@ extends Object
 
 enum Type {
 	DEFAULT,
-	TWO_POWER
+	ENERGY_INEFFICIENT
 }

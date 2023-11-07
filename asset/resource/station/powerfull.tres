@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StationResource" load_steps=2 format=3 uid="uid://bybahsf88pr3s"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/station/station_resource.gd" id="1_t2yiy"]
+
+[resource]
+script = ExtResource("1_t2yiy")
+power = 2
+radius = 128
+available_spots = Array[int]([0])

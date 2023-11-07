@@ -13,6 +13,10 @@ func _ready() -> void:
 	_station = null
 
 
+func init(_position: Vector2) -> void:
+	position = _position
+
+
 func can_add_station(_global_position: Vector2) -> bool:
 	return not _station and _shape.shape.get_rect().has_point(to_local(_global_position))
 

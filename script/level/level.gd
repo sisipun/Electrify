@@ -7,6 +7,8 @@ extends Area2D
 @export_node_path("Node2D") var _buildings_node_path: NodePath
 @export_node_path("Node2D") var _spots_node_path: NodePath
 @export var _station_scene: PackedScene
+@export var _building_scene: PackedScene
+@export var _spot_scene: PackedScene
 
 @onready var _shape: CollisionShape2D = get_node(_shape_path)
 @onready var _stations_node: Node2D = get_node(_stations_node_path)
@@ -22,15 +24,10 @@ var _selected_station: Station
 func _ready() -> void:
 	_on_window_size_changed()
 	get_viewport().size_changed.connect(_on_window_size_changed)
-	
+	Events.level_start_request.connect(_on_level_start_request)
 	_stations = []
 	_buildings = []
-	for building in _buildings_node.get_children():
-		_buildings.append(building)
 	_spots = []
-	for spot in _spots_node.get_children():
-		_spots.append(spot)
-	
 	_selected_station = null
 
 
@@ -75,8 +72,26 @@ func _unhandled_input(event: InputEvent) -> void:
 		_selected_station.move_to(new_position)
 
 
+
 func _on_window_size_changed() -> void:
 	position = get_viewport_rect().size / 2
+
+
+func _on_level_start_request(level_id: String) -> void:
+	var level_resource: LevelResource = Levels.get_resource_by_id(level_id)
+	for level_building_resource in level_resource.buildings:
+		var building_resource: BuildingResource = Buildings.get_resource_by_type(level_building_resource.type)
+		var building: Building = _building_scene.instantiate()
+		_buildings_node.add_child(building)
+		building.init(level_building_resource.position, building_resource.power_to_activate)
+		_buildings.append(building)
+	
+	for level_spot_resource in level_resource.spots:
+		var _spot_resource: SpotResource = Spots.get_resource_by_type(level_spot_resource.type)
+		var spot: Spot = _spot_scene.instantiate()
+		_spots_node.add_child(spot)
+		spot.init(level_spot_resource.position)
+		_spots.append(spot)
 
 
 func _on_station_pressed(station: Station) -> void:

@@ -5,11 +5,10 @@ extends Area2D
 @export_node_path("AnimatedSprite2D") var _body_path: NodePath
 @export_node_path("AnimatedSprite2D") var _effect_path: NodePath
 
-@export_range(1, 10) var _power_to_active: int
-
 @onready var _body: AnimatedSprite2D = get_node(_body_path)
 @onready var _effect: AnimatedSprite2D = get_node(_effect_path)
 
+var _power_to_active: int
 var _power: int
 
 
@@ -17,6 +16,11 @@ func _ready() -> void:
 	_power = 0
 	_show_inactive()
 	show_default_effect()
+
+
+func init(_position: Vector2, power_to_activate: int) -> void:
+	position = _position
+	_power_to_active = power_to_activate
 
 
 func is_active() -> bool:

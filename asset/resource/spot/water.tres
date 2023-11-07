@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SpotResource" load_steps=2 format=3 uid="uid://b1y2dvm37ovnf"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/spot/spot_resource.gd" id="1_ra6cs"]
+
+[resource]
+script = ExtResource("1_ra6cs")

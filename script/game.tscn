@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2kb26jw5eyle"]
+[gd_scene load_steps=6 format=3 uid="uid://c2kb26jw5eyle"]
 
 [ext_resource type="PackedScene" uid="uid://civmld8jgj43g" path="res://script/level/level.tscn" id="1_qe6p7"]
+[ext_resource type="Script" path="res://script/game.gd" id="1_x7wco"]
 [ext_resource type="PackedScene" uid="uid://bfuyhl76347oj" path="res://script/interface/interface.tscn" id="2_ulcvg"]
 [ext_resource type="PackedScene" uid="uid://x3t4tisbkbcj" path="res://script/interface/panel/station/station_list_panel.tscn" id="3_t84e3"]
 [ext_resource type="PackedScene" uid="uid://dekjoya4s7qjg" path="res://script/interface/common/component/container/drag_and_drop/drag_and_drop.tscn" id="4_jwuvk"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_x7wco")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = 0
