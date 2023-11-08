@@ -15,6 +15,7 @@ grow_vertical = 0
 mouse_filter = 1
 script = ExtResource("1_7csx3")
 _definitions_node_path = NodePath("CenterContainer/MarginContainer/Definitions")
+_definition_scene = ExtResource("2_h815n")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(0, 300)
@@ -37,18 +38,3 @@ theme_override_constants/margin_right = 50
 [node name="Definitions" type="HBoxContainer" parent="CenterContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
-
-[node name="StationDefinition" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
-layout_mode = 2
-
-[node name="StationDefinition2" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
-layout_mode = 2
-
-[node name="StationDefinition3" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
-layout_mode = 2
-
-[node name="StationDefinition4" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
-layout_mode = 2
-
-[node name="StationDefinition5" parent="CenterContainer/MarginContainer/Definitions" instance=ExtResource("2_h815n")]
-layout_mode = 2

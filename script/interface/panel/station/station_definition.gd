@@ -13,10 +13,12 @@ var _count:
 	set(value):
 		_count = value
 		_count_label.text = str(value)
+var _type: StationModel.Type
 
 
-func _ready() -> void:
-	_count = 4
+func init(type: StationModel.Type, count: int) -> void:
+	_type = type
+	_count = count
 
 
 func _gui_input(event: InputEvent) -> void:

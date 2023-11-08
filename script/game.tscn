@@ -28,6 +28,7 @@ color = Color(0.976471, 0.933333, 0.705882, 1)
 layer = 2
 
 [node name="Interface" parent="InterfaceLayer" instance=ExtResource("2_ulcvg")]
+_station_list_panel_node_path = NodePath("StationList")
 
 [node name="StationList" parent="InterfaceLayer/Interface" instance=ExtResource("3_t84e3")]
 layout_mode = 1

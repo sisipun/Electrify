@@ -72,7 +72,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_selected_station.move_to(new_position)
 
 
-
 func _on_window_size_changed() -> void:
 	position = get_viewport_rect().size / 2
 
