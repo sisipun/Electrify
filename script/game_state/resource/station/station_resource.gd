@@ -6,3 +6,4 @@ extends Resource
 @export_range(1, 1000) var radius: int
 @export var available_spots: Array[SpotModel.Type]
 @export var sprite_frames: SpriteFrames
+@export var definition_image: Texture 

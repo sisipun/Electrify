@@ -1,7 +1,29 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=2 format=3 uid="uid://cmmcj2s2eg3d2"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=5 format=3 uid="uid://cmmcj2s2eg3d2"]
 
 [ext_resource type="Script" path="res://script/game_state/resource/building/building_resource.gd" id="1_tx63d"]
+[ext_resource type="Texture2D" uid="uid://c2rynmfa4u31k" path="res://asset/image/level/building/energy_inefficient_active.svg" id="2_hso8c"]
+[ext_resource type="Texture2D" uid="uid://cenq8emegqgqj" path="res://asset/image/level/building/energy_inefficient.svg" id="3_67blx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c8w6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hso8c")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_67blx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_tx63d")
 power_to_activate = 2
+sprite_frames = SubResource("SpriteFrames_4c8w6")

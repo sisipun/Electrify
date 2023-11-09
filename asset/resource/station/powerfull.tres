@@ -1,9 +1,23 @@
-[gd_resource type="Resource" script_class="StationResource" load_steps=2 format=3 uid="uid://bybahsf88pr3s"]
+[gd_resource type="Resource" script_class="StationResource" load_steps=4 format=3 uid="uid://bybahsf88pr3s"]
 
 [ext_resource type="Script" path="res://script/game_state/resource/station/station_resource.gd" id="1_t2yiy"]
+[ext_resource type="Texture2D" uid="uid://cbdk7mxv848ou" path="res://asset/image/level/station/powerfull.svg" id="2_nyvov"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dks5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nyvov")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_t2yiy")
 power = 2
 radius = 128
 available_spots = Array[int]([0])
+sprite_frames = SubResource("SpriteFrames_dks5p")
+definition_image = ExtResource("2_nyvov")

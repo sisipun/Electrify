@@ -14,10 +14,14 @@ signal dragged(data)
 func init(level_station_resources: Array[LevelStationResource]) -> void:
 	for level_station_resource in level_station_resources:
 		var definition: StationDefinition = _definition_scene.instantiate()
-		var _station_resource: StationResource = Stations.get_resource_by_type(level_station_resource.type)
+		var station_resource: StationResource = Stations.get_resource_by_type(level_station_resource.type)
 		_definitions_node.add_child(definition)
-		definition.init(level_station_resource.type, level_station_resource.count)
 		definition.dragged.connect(Callable(_on_definition_dragged).bind(definition))
+		definition.init(
+			level_station_resource.type, 
+			station_resource.definition_image, 
+			level_station_resource.count
+		)
 
 
 func drag_started(data: Dictionary) -> void:
@@ -35,4 +39,5 @@ func dropped(data: Dictionary) -> void:
 func _on_definition_dragged(definition: StationDefinition) -> void:
 	var data = {}
 	data["definition"] = definition
+	data["type"] = definition.get_type()
 	emit_signal("dragged", data)

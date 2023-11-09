@@ -1,7 +1,29 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=2 format=3 uid="uid://ch3si6rshm41s"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=5 format=3 uid="uid://ch3si6rshm41s"]
 
 [ext_resource type="Script" path="res://script/game_state/resource/building/building_resource.gd" id="1_dw80v"]
+[ext_resource type="Texture2D" uid="uid://duldrmibgd5no" path="res://asset/image/level/building/default_active.svg" id="2_em2yd"]
+[ext_resource type="Texture2D" uid="uid://nbwda8kidux1" path="res://asset/image/level/building/default.svg" id="2_f4p8d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjcr6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_em2yd")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f4p8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_dw80v")
-power_to_activate = 0
+power_to_activate = 1
+sprite_frames = SubResource("SpriteFrames_tjcr6")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7yacb5v70jaa"
-path="res://.godot/imported/point.svg-dffae5c1ce668ba3ef5e799ec8c97ffe.ctex"
+uid="uid://ctha0p0dasaaa"
+path="res://.godot/imported/default.svg-95c4b267a6c38decc2818459a763a8f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/level/station/point.svg"
-dest_files=["res://.godot/imported/point.svg-dffae5c1ce668ba3ef5e799ec8c97ffe.ctex"]
+source_file="res://asset/image/level/station/default.svg"
+dest_files=["res://.godot/imported/default.svg-95c4b267a6c38decc2818459a763a8f9.ctex"]
 
 [params]
 

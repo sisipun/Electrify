@@ -15,9 +15,6 @@ extends Area2D
 @onready var _buildings_node: Node2D = get_node(_buildings_node_path)
 @onready var _spots_node: Node2D = get_node(_spots_node_path)
 
-var _stations: Array[Station]
-var _buildings: Array[Building]
-var _spots: Array[Spot]
 var _selected_station: Station
 
 
@@ -25,31 +22,33 @@ func _ready() -> void:
 	_on_window_size_changed()
 	get_viewport().size_changed.connect(_on_window_size_changed)
 	Events.level_start_request.connect(_on_level_start_request)
-	_stations = []
-	_buildings = []
-	_spots = []
 	_selected_station = null
 
 
 func is_completed() -> bool:
-	for building in _buildings:
+	for building in _buildings_node.get_children():
 		if not building.is_active():
 			return false
 	return true
 
 
 func can_drop(_global_position: Vector2, _data: Variant) -> bool:
-	return get_spot(_global_position) != null
+	return _get_spot(_global_position) != null
 
 
 func drop(_global_position: Vector2, _data: Variant) -> void:
+	var type: StationModel.Type = _data["type"]
+	var station_resource: StationResource = Stations.get_resource_by_type(type)
 	var station: Station = _station_scene.instantiate()
 	_stations_node.add_child(station)
-	_stations.append(station)
 	station.pressed.connect(Callable(_on_station_pressed).bind(station))
 	station.building_entered.connect(Callable(_on_station_building_entered).bind(station))
-	station.init(to_local(_global_position), 256)
-	get_spot(_global_position).add_station(station)
+	station.init(
+		to_local(_global_position), 
+		station_resource.sprite_frames,
+		station_resource.radius
+	)
+	_get_spot(_global_position).add_station(station)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -82,15 +81,20 @@ func _on_level_start_request(level_id: String) -> void:
 		var building_resource: BuildingResource = Buildings.get_resource_by_type(level_building_resource.type)
 		var building: Building = _building_scene.instantiate()
 		_buildings_node.add_child(building)
-		building.init(level_building_resource.position, building_resource.power_to_activate)
-		_buildings.append(building)
+		building.init(
+			level_building_resource.position, 
+			building_resource.sprite_frames, 
+			building_resource.power_to_activate
+		)
 	
 	for level_spot_resource in level_resource.spots:
-		var _spot_resource: SpotResource = Spots.get_resource_by_type(level_spot_resource.type)
+		var spot_resource: SpotResource = Spots.get_resource_by_type(level_spot_resource.type)
 		var spot: Spot = _spot_scene.instantiate()
 		_spots_node.add_child(spot)
-		spot.init(level_spot_resource.position)
-		_spots.append(spot)
+		spot.init(
+			level_spot_resource.position, 
+			spot_resource.sprite_frames
+		)
 
 
 func _on_station_pressed(station: Station) -> void:
@@ -108,8 +112,8 @@ func _on_station_building_entered(_building: Building, _station: Station) -> voi
 		print('completed')
 
 
-func get_spot(_global_position: Vector2) -> Spot:
-	for spot in _spots:
+func _get_spot(_global_position: Vector2) -> Spot:
+	for spot in _spots_node.get_children():
 		if spot.can_add_station(_global_position):
 			return spot
 	return null

@@ -1,6 +1,19 @@
-[gd_resource type="Resource" script_class="SpotResource" load_steps=2 format=3 uid="uid://b323c2xu2qfl"]
+[gd_resource type="Resource" script_class="SpotResource" load_steps=4 format=3 uid="uid://b323c2xu2qfl"]
 
 [ext_resource type="Script" path="res://script/game_state/resource/spot/spot_resource.gd" id="1_gnd6p"]
+[ext_resource type="Texture2D" uid="uid://b7yacb5v70jaa" path="res://asset/image/level/spot/land.svg" id="2_jom0m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekkrm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jom0m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_gnd6p")
+sprite_frames = SubResource("SpriteFrames_ekkrm")

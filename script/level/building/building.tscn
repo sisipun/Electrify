@@ -1,32 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dokjxdo0mwijs"]
+[gd_scene load_steps=6 format=3 uid="uid://dokjxdo0mwijs"]
 
 [ext_resource type="Script" path="res://script/level/building/building.gd" id="1_c7n5g"]
-[ext_resource type="Texture2D" uid="uid://duldrmibgd5no" path="res://asset/image/level/building/building_active.svg" id="2_lm8t3"]
-[ext_resource type="Texture2D" uid="uid://nbwda8kidux1" path="res://asset/image/level/building/building.svg" id="3_h3td0"]
 [ext_resource type="Texture2D" uid="uid://cqp18fkrebk2" path="res://asset/image/level/building/effect/building_effect_default.svg" id="4_h0g88"]
 [ext_resource type="Texture2D" uid="uid://3lrqf5wsuyv1" path="res://asset/image/level/building/effect/building_effect_preview.svg" id="5_rsyxg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qphr5"]
 radius = 64.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dvwp3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_lm8t3")
-}],
-"loop": true,
-"name": &"active",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_h3td0")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h8qmf"]
 animations = [{
@@ -56,7 +35,6 @@ _effect_path = NodePath("Effect")
 shape = SubResource("CircleShape2D_qphr5")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_dvwp3")
 
 [node name="Effect" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h8qmf")

@@ -8,23 +8,22 @@ extends Area2D
 @onready var _body: AnimatedSprite2D = get_node(_body_path)
 @onready var _effect: AnimatedSprite2D = get_node(_effect_path)
 
-var _power_to_active: int
+var _power_to_activate: int
 var _power: int
 
 
 func _ready() -> void:
 	_power = 0
-	_show_inactive()
-	show_default_effect()
 
 
-func init(_position: Vector2, power_to_activate: int) -> void:
+func init(_position: Vector2, sprite_frames: SpriteFrames, power_to_activate: int) -> void:
 	position = _position
-	_power_to_active = power_to_activate
+	_body.sprite_frames = sprite_frames
+	_power_to_activate = power_to_activate
 
 
 func is_active() -> bool:
-	return _power >= _power_to_active
+	return _power >= _power_to_activate
 
 
 func increase_power(value: int) -> void:

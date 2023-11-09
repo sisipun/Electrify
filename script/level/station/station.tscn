@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://0p72am0ws48r"]
+[gd_scene load_steps=4 format=3 uid="uid://0p72am0ws48r"]
 
 [ext_resource type="Script" path="res://script/level/station/station.gd" id="1_6c4ox"]
 [ext_resource type="PackedScene" uid="uid://b1h76h6weete2" path="res://script/level/station/station_zone.tscn" id="2_wsng2"]
-[ext_resource type="Texture2D" uid="uid://ctha0p0dasaaa" path="res://asset/image/level/station/station.svg" id="3_s6ji2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ln61"]
 radius = 64.0
 
 [node name="Station" type="Area2D"]
 script = ExtResource("1_6c4ox")
+_body_node_path = NodePath("Body")
 _zone_path = NodePath("StationZone")
 _power = 1
 
@@ -17,5 +17,4 @@ _power = 1
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6ln61")
 
-[node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("3_s6ji2")
+[node name="Body" type="AnimatedSprite2D" parent="."]

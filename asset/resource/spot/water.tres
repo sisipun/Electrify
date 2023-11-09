@@ -1,6 +1,19 @@
-[gd_resource type="Resource" script_class="SpotResource" load_steps=2 format=3 uid="uid://b1y2dvm37ovnf"]
+[gd_resource type="Resource" script_class="SpotResource" load_steps=4 format=3 uid="uid://b1y2dvm37ovnf"]
 
 [ext_resource type="Script" path="res://script/game_state/resource/spot/spot_resource.gd" id="1_ra6cs"]
+[ext_resource type="Texture2D" uid="uid://c2dt62y4f6wjx" path="res://asset/image/level/spot/water.svg" id="2_c273g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_llp6a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c273g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_ra6cs")
+sprite_frames = SubResource("SpriteFrames_llp6a")

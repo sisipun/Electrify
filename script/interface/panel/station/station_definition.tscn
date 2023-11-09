@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ceeklw0avuh5r"]
 
 [ext_resource type="Script" path="res://script/interface/panel/station/station_definition.gd" id="1_vi62g"]
-[ext_resource type="Texture2D" uid="uid://ctha0p0dasaaa" path="res://asset/image/level/station/station.svg" id="1_ysehr"]
+[ext_resource type="Texture2D" uid="uid://ctha0p0dasaaa" path="res://asset/image/level/station/default.svg" id="1_ysehr"]
 
 [node name="StationDefinition" type="Panel"]
 custom_minimum_size = Vector2(150, 150)
@@ -9,6 +9,7 @@ offset_right = 150.0
 offset_bottom = 150.0
 mouse_filter = 1
 script = ExtResource("1_vi62g")
+_body_node_path = NodePath("Body")
 _count_label_node_path = NodePath("Count")
 
 [node name="Body" type="NinePatchRect" parent="."]

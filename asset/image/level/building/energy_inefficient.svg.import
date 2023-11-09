@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duldrmibgd5no"
-path="res://.godot/imported/building_active.svg-4ffdb6c189b172065c6d8f23906f3957.ctex"
+uid="uid://cenq8emegqgqj"
+path="res://.godot/imported/energy_inefficient.svg-7b1515178c9d6bc84da874ff73970299.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/level/building/building_active.svg"
-dest_files=["res://.godot/imported/building_active.svg-4ffdb6c189b172065c6d8f23906f3957.ctex"]
+source_file="res://asset/image/level/building/energy_inefficient.svg"
+dest_files=["res://.godot/imported/energy_inefficient.svg-7b1515178c9d6bc84da874ff73970299.ctex"]
 
 [params]
 
