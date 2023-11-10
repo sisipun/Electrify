@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dowxc84fgjrig"]
+
+[ext_resource type="Script" path="res://script/game_state/storage/game/game_storage.gd" id="1_4bi6c"]
+
+[node name="GameStorage" type="Node"]
+script = ExtResource("1_4bi6c")
+_save_path = "user://saves/"
+_save_file = "game.json"
+_current_version = "1.0.0"

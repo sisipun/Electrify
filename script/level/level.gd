@@ -15,6 +15,7 @@ extends Area2D
 @onready var _buildings_node: Node2D = get_node(_buildings_node_path)
 @onready var _spots_node: Node2D = get_node(_spots_node_path)
 
+var _level_id: String
 var _selected_station: Station
 
 
@@ -76,6 +77,7 @@ func _on_window_size_changed() -> void:
 
 
 func _on_level_start_request(level_id: String) -> void:
+	_level_id = level_id
 	var level_resource: LevelResource = Levels.get_resource_by_id(level_id)
 	for level_building_resource in level_resource.buildings:
 		var building_resource: BuildingResource = Buildings.get_resource_by_type(level_building_resource.type)
@@ -109,7 +111,7 @@ func _on_station_released() -> void:
 
 func _on_station_building_entered(_building: Building, _station: Station) -> void:
 	if is_completed():
-		print('completed')
+		Events.emit_signal("level_completed", _level_id)
 
 
 func _get_spot(_global_position: Vector2) -> Spot:
