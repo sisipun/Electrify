@@ -24,6 +24,11 @@ func init(level_station_resources: Array[LevelStationResource]) -> void:
 		)
 
 
+func clear() -> void:
+	for definition in _definitions_node.get_children():
+		definition.queue_free()
+
+
 func drag_started(data: Dictionary) -> void:
 	data["definition"].drag_started()
 

@@ -23,7 +23,6 @@ func _ready() -> void:
 	_on_window_size_changed()
 	get_viewport().size_changed.connect(_on_window_size_changed)
 	Events.level_start_request.connect(_on_level_start_request)
-	_selected_station = null
 
 
 func is_completed() -> bool:
@@ -52,6 +51,41 @@ func drop(_global_position: Vector2, _data: Variant) -> void:
 	_get_spot(_global_position).add_station(station)
 
 
+func clear() -> void:
+	for spot in _spots_node.get_children():
+		spot.queue_free()
+	for building in _buildings_node.get_children():
+		building.queue_free()
+	for station in _stations_node.get_children():
+		station.queue_free()
+	_selected_station = null
+
+
+func start(level_id: String) -> void:
+	_level_id = level_id
+	var level_resource: LevelResource = Levels.get_resource_by_id(level_id)
+	for level_building_resource in level_resource.buildings:
+		var building_resource: BuildingResource = Buildings.get_resource_by_type(level_building_resource.type)
+		var building: Building = _building_scene.instantiate()
+		_buildings_node.add_child(building)
+		building.init(
+			level_building_resource.position, 
+			building_resource.sprite_frames, 
+			building_resource.power_to_activate
+		)
+	
+	for level_spot_resource in level_resource.spots:
+		var spot_resource: SpotResource = Spots.get_resource_by_type(level_spot_resource.type)
+		var spot: Spot = _spot_scene.instantiate()
+		_spots_node.add_child(spot)
+		spot.init(
+			level_spot_resource.position, 
+			spot_resource.sprite_frames
+		)
+	
+	Events.emit_signal("level_started", _level_id)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and not event.pressed:
 		_on_station_released()
@@ -77,26 +111,8 @@ func _on_window_size_changed() -> void:
 
 
 func _on_level_start_request(level_id: String) -> void:
-	_level_id = level_id
-	var level_resource: LevelResource = Levels.get_resource_by_id(level_id)
-	for level_building_resource in level_resource.buildings:
-		var building_resource: BuildingResource = Buildings.get_resource_by_type(level_building_resource.type)
-		var building: Building = _building_scene.instantiate()
-		_buildings_node.add_child(building)
-		building.init(
-			level_building_resource.position, 
-			building_resource.sprite_frames, 
-			building_resource.power_to_activate
-		)
-	
-	for level_spot_resource in level_resource.spots:
-		var spot_resource: SpotResource = Spots.get_resource_by_type(level_spot_resource.type)
-		var spot: Spot = _spot_scene.instantiate()
-		_spots_node.add_child(spot)
-		spot.init(
-			level_spot_resource.position, 
-			spot_resource.sprite_frames
-		)
+	clear()
+	start(level_id)
 
 
 func _on_station_pressed(station: Station) -> void:
