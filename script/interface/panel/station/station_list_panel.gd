@@ -12,6 +12,7 @@ signal dragged(data)
 
 
 func init(level_station_resources: Array[LevelStationResource]) -> void:
+	clear()
 	for level_station_resource in level_station_resources:
 		var definition: StationDefinition = _definition_scene.instantiate()
 		var station_resource: StationResource = Stations.get_resource_by_type(level_station_resource.type)

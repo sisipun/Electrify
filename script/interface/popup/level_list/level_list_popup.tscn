@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://kq6po4my3k71"]
+
+[ext_resource type="Script" path="res://script/interface/popup/level_list/level_list_popup.gd" id="1_crffr"]
+[ext_resource type="PackedScene" uid="uid://bqgjcwugx7yri" path="res://script/interface/common/component/container/drag_scroll/drag_scroll_container.tscn" id="1_j6d8v"]
+[ext_resource type="Script" path="res://script/interface/popup/level_list/level_list.gd" id="2_6huha"]
+[ext_resource type="PackedScene" uid="uid://bipr7wc3fwa4h" path="res://script/interface/popup/level_list/level_preview.tscn" id="4_irs4j"]
+
+[node name="LevelListPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_crffr")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="DragScrollContainer" parent="." instance=ExtResource("1_j6d8v")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="DragScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LevelList" type="VBoxContainer" parent="DragScrollContainer/CenterContainer"]
+layout_mode = 2
+script = ExtResource("2_6huha")
+level_preview_scene = ExtResource("4_irs4j")

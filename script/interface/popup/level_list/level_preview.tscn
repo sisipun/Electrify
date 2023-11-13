@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bipr7wc3fwa4h"]
+
+[ext_resource type="Script" path="res://script/interface/popup/level_list/level_preview.gd" id="1_jevcy"]
+
+[node name="LevelPreview" type="Panel"]
+custom_minimum_size = Vector2(500, 200)
+script = ExtResource("1_jevcy")
+_name_label_path = NodePath("HBoxContainer/Name")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1

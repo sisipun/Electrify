@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=15 format=3 uid="uid://csx1b7srot5mb"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_building_resource.gd" id="1_ied6h"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_resource.gd" id="1_umsps"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_spot_resource.gd" id="3_u8ew8"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_station_resource.gd" id="4_7fc0h"]
+
+[sub_resource type="Resource" id="Resource_5dafh"]
+script = ExtResource("1_ied6h")
+type = 0
+position = Vector2(150, 300)
+
+[sub_resource type="Resource" id="Resource_5bluk"]
+script = ExtResource("1_ied6h")
+type = 0
+position = Vector2(300, 300)
+
+[sub_resource type="Resource" id="Resource_tv2id"]
+script = ExtResource("1_ied6h")
+type = 0
+position = Vector2(-200, -400)
+
+[sub_resource type="Resource" id="Resource_j2w2p"]
+script = ExtResource("1_ied6h")
+type = 0
+position = Vector2(180, -380)
+
+[sub_resource type="Resource" id="Resource_bphl1"]
+script = ExtResource("3_u8ew8")
+type = 0
+position = Vector2(170, 340)
+
+[sub_resource type="Resource" id="Resource_ktwqj"]
+script = ExtResource("3_u8ew8")
+type = 0
+position = Vector2(-220, -430)
+
+[sub_resource type="Resource" id="Resource_fxso3"]
+script = ExtResource("3_u8ew8")
+type = 0
+position = Vector2(190, -380)
+
+[sub_resource type="Resource" id="Resource_yv72r"]
+script = ExtResource("4_7fc0h")
+type = 0
+count = 1
+
+[sub_resource type="Resource" id="Resource_oamv0"]
+script = ExtResource("4_7fc0h")
+type = 1
+count = 1
+
+[sub_resource type="Resource" id="Resource_voscw"]
+script = ExtResource("4_7fc0h")
+type = 2
+count = 1
+
+[resource]
+script = ExtResource("1_umsps")
+id = "2"
+_two_star_condition = 1
+_three_star_condition = 2
+stations = Array[ExtResource("4_7fc0h")]([SubResource("Resource_yv72r"), SubResource("Resource_oamv0"), SubResource("Resource_voscw")])
+buildings = Array[ExtResource("1_ied6h")]([SubResource("Resource_5dafh"), SubResource("Resource_5bluk"), SubResource("Resource_tv2id"), SubResource("Resource_j2w2p")])
+spots = Array[ExtResource("3_u8ew8")]([SubResource("Resource_bphl1"), SubResource("Resource_ktwqj"), SubResource("Resource_fxso3")])

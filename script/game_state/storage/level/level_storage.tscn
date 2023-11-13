@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv35rqu2qg5ks"]
+[gd_scene load_steps=4 format=3 uid="uid://cv35rqu2qg5ks"]
 
 [ext_resource type="Script" path="res://script/game_state/storage/level/level_storage.gd" id="1_koeb3"]
 [ext_resource type="Resource" uid="uid://1eawuyyjb5i8" path="res://asset/resource/level/1_level.tres" id="2_wmt7t"]
+[ext_resource type="Resource" uid="uid://csx1b7srot5mb" path="res://asset/resource/level/2_level.tres" id="3_pre0t"]
 
 [node name="LevelStorage" type="Node"]
 script = ExtResource("1_koeb3")
-_levels = Array[Resource("res://script/game_state/resource/level/level_resource.gd")]([ExtResource("2_wmt7t")])
+_levels = Array[Resource("res://script/game_state/resource/level/level_resource.gd")]([ExtResource("2_wmt7t"), ExtResource("3_pre0t")])

@@ -11,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kv0sn")
 _next_button_path = NodePath("Buttons/NextButton")
+_home_button_path = NodePath("Buttons/HomeButton")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -34,8 +35,14 @@ offset_right = 22.5
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 50
 
 [node name="NextButton" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Next
+"
+
+[node name="HomeButton" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Home
 "

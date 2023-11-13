@@ -22,6 +22,10 @@ func get_resource_by_id(id: String) -> LevelResource:
 	return _id_to_level[id]
 
 
+func get_level_ids() -> Array[String]:
+	return _level_ids
+
+
 func get_current_level_id() -> String:
 	return _current_level_id
 

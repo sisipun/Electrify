@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqgjcwugx7yri"]
+
+[ext_resource type="Script" path="res://script/interface/common/component/container/drag_scroll/drag_scroll_container.gd" id="1_ygkp8"]
+
+[node name="DragScrollContainer" type="ScrollContainer"]
+script = ExtResource("1_ygkp8")
