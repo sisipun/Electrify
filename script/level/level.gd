@@ -127,7 +127,7 @@ func _on_station_released() -> void:
 
 func _on_station_building_entered(_building: Building, _station: Station) -> void:
 	if is_completed():
-		Events.emit_signal("level_completed", _level_id)
+		Events.emit_signal("level_completed", _level_id, 3)
 
 
 func _get_spot(_global_position: Vector2) -> Spot:

@@ -11,5 +11,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_8ogdl")
-_station_list_panel_node_path = null
-_level_complete_popup_path = null

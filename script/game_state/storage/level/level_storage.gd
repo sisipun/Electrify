@@ -6,14 +6,17 @@ extends Node
 
 var _current_level_id: String
 var _id_to_level: Dictionary = {}
+var _stars: Dictionary = {}
 var _level_ids: Array[String] = []
 
 
 func _ready() -> void:
 	Events.game_updated.connect(_on_game_updated)
+	Events.game_stars_updated.connect(_on_game_stars_updated)
 	
 	for level in _levels:
 		_id_to_level[level.id] = level
+		_stars[level.id] = 0
 		_level_ids.append(level.id)
 	_current_level_id = _level_ids[0]
 
@@ -38,6 +41,14 @@ func get_next_level_id(id: String) -> String:
 	return _level_ids[next_index]
 
 
+func get_stars(id: String) -> int:
+	return _stars[id]
+
+
 func _on_game_updated(game: GameData) -> void:
 	if game.current_level_id:
 		_current_level_id = game.current_level_id
+
+
+func _on_game_stars_updated(level_id: String, stars: int) -> void:
+	_stars[level_id] = stars
