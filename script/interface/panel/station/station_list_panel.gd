@@ -30,20 +30,20 @@ func clear() -> void:
 		definition.queue_free()
 
 
-func drag_started(data: Dictionary) -> void:
-	data["definition"].drag_started()
+func drag_started(data: Variant) -> void:
+	if data is StationDefinition:
+		data.drag_started()
 
 
-func drag_canceled(data: Dictionary) -> void:
-	data["definition"].drag_canceled()
+func drag_canceled(data: Variant) -> void:
+	if data is StationDefinition:
+		data.drag_canceled()
 
 
-func dropped(data: Dictionary) -> void:
-	data["definition"].dropped()
+func dropped(data: Variant) -> void:
+	if data is StationDefinition:
+		data.dropped()
 
 
 func _on_definition_dragged(definition: StationDefinition) -> void:
-	var data = {}
-	data["definition"] = definition
-	data["type"] = definition.get_type()
-	emit_signal("dragged", data)
+	emit_signal("dragged", definition)

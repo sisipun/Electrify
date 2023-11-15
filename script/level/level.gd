@@ -2,7 +2,9 @@ class_name Level
 extends Area2D
 
 
-@export_node_path("CollisionShape2D") var _shape_path: NodePath
+signal dragged(data)
+
+
 @export_node_path("Node2D") var _stations_node_path: NodePath 
 @export_node_path("Node2D") var _buildings_node_path: NodePath
 @export_node_path("Node2D") var _spots_node_path: NodePath
@@ -10,7 +12,6 @@ extends Area2D
 @export var _building_scene: PackedScene
 @export var _spot_scene: PackedScene
 
-@onready var _shape: CollisionShape2D = get_node(_shape_path)
 @onready var _stations_node: Node2D = get_node(_stations_node_path)
 @onready var _buildings_node: Node2D = get_node(_buildings_node_path)
 @onready var _spots_node: Node2D = get_node(_spots_node_path)
@@ -36,19 +37,20 @@ func can_drop(_global_position: Vector2, _data: Variant) -> bool:
 	return _get_spot(_global_position) != null
 
 
-func drop(_global_position: Vector2, _data: Variant) -> void:
-	var type: StationModel.Type = _data["type"]
-	var station_resource: StationResource = Stations.get_resource_by_type(type)
-	var station: Station = _station_scene.instantiate()
-	_stations_node.add_child(station)
-	station.pressed.connect(Callable(_on_station_pressed).bind(station))
-	station.building_entered.connect(Callable(_on_station_building_entered).bind(station))
-	station.init(
-		to_local(_global_position), 
-		station_resource.sprite_frames,
-		station_resource.radius
-	)
-	_get_spot(_global_position).add_station(station)
+func drop(_global_position: Vector2, data: Variant) -> void:
+	if data is StationDefinition:
+		var type: StationModel.Type = data.get_type()
+		var station_resource: StationResource = Stations.get_resource_by_type(type)
+		var station: Station = _station_scene.instantiate()
+		_stations_node.add_child(station)
+		station.dragged.connect(Callable(_on_station_dragged).bind(station))
+		station.building_entered.connect(Callable(_on_station_building_entered).bind(station))
+		station.init(
+			to_local(_global_position), 
+			station_resource.sprite_frames,
+			station_resource.radius
+		)
+		_get_spot(_global_position).add_station(station)
 
 
 func clear() -> void:
@@ -86,26 +88,6 @@ func start(level_id: String) -> void:
 	Events.emit_signal("level_started", _level_id)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch and not event.pressed:
-		_on_station_released()
-	if event is InputEventScreenDrag and _selected_station:
-		var new_position = _selected_station.position + event.relative
-		
-		var size: Vector2 = _shape.shape.get_rect().size / 2
-		if _selected_station.position.x > size.x:
-			_selected_station.position.x = size.x
-		elif _selected_station.position.x < -size.x:
-			_selected_station.position.x = -size.x
-		
-		if _selected_station.position.y > size.y:
-			_selected_station.position.y = size.y
-		elif _selected_station.position.y < -size.y:
-			_selected_station.position.y = -size.y
-		
-		_selected_station.move_to(new_position)
-
-
 func _on_window_size_changed() -> void:
 	position = get_viewport_rect().size / 2
 
@@ -115,14 +97,8 @@ func _on_level_start_request(level_id: String) -> void:
 	start(level_id)
 
 
-func _on_station_pressed(station: Station) -> void:
-	if not _selected_station:
-		_selected_station = station
-
-
-func _on_station_released() -> void:
-	if _selected_station:
-		_selected_station = null
+func _on_station_dragged(station: Station) -> void:
+	emit_signal("dragged", station)
 
 
 func _on_station_building_entered(_building: Building, _station: Station) -> void:

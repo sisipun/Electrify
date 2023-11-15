@@ -30,11 +30,11 @@ func init(_level_id: String, _stars: int) -> void:
 	self.stars = _stars
 
 
-func _on_game_stars_updated(_level_id: String, _stars: int) -> void:
-	if level_id == _level_id:
-		stars = Levels.get_stars(_level_id)
-
-
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and !event.is_pressed():
 		emit_signal("pressed")
+
+
+func _on_game_stars_updated(_level_id: String, _stars: int) -> void:
+	if level_id == _level_id:
+		stars = Levels.get_stars(_level_id)
