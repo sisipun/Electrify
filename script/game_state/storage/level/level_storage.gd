@@ -46,6 +46,8 @@ func get_stars(id: String) -> int:
 
 
 func _on_game_updated(game: GameData) -> void:
+	for level in game.levels:
+		_stars[level.id] = level.stars
 	if game.current_level_id:
 		_current_level_id = game.current_level_id
 

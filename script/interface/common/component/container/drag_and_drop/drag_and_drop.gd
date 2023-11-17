@@ -1,4 +1,4 @@
-class_name DragAndDropped
+class_name DragAndDropp
 extends Node
 
 
