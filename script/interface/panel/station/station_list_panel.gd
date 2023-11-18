@@ -30,19 +30,19 @@ func clear() -> void:
 		definition.queue_free()
 
 
-func drag_started(data: Variant) -> void:
-	if data is StationDefinition:
-		data.drag_started()
+func drag_started(drag_data: Variant, _drag_zone: Node) -> void:
+	if drag_data is StationDefinition:
+		drag_data.drag_started()
 
 
-func drag_canceled(data: Variant) -> void:
-	if data is StationDefinition:
-		data.drag_canceled()
+func drag_canceled(drag_data: Variant, _drag_zone: Node) -> void:
+	if drag_data is StationDefinition:
+		drag_data.drag_canceled()
 
 
-func dropped(data: Variant) -> void:
-	if data is StationDefinition:
-		data.dropped()
+func dropped(drag_data: Variant, _drag_zone: Node) -> void:
+	if drag_data is StationDefinition:
+		drag_data.dropped()
 
 
 func _on_definition_dragged(definition: StationDefinition) -> void:

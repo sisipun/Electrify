@@ -2,36 +2,77 @@ class_name DragAndDropp
 extends Node
 
 
-@export_node_path("Node") var _drag_zone_path: NodePath
-@export_node_path("Node") var _drop_zone_path: NodePath
+enum State {
+	DEFAULT,
+	DRAGGED
+}
 
-@onready var _drag_zone: Node = get_node(_drag_zone_path)
-@onready var _drop_zone: Node = get_node(_drop_zone_path)
+
+@export var _drag_and_drop_zone_paths: Array[NodePath]
+
+@onready var _drag_and_drop_zones: Array = _drag_and_drop_zone_paths.map(func(it) -> Node: return get_node(it))
 
 var _drag_data: Variant
+var _drag_zone: Node
+var _state: State
 
 
 func _ready() -> void:
-	_drag_data = null
-	_drag_zone.dragged.connect(_on_dragged)
+	cancel()
+	for zone in _drag_and_drop_zones:
+		if zone.has_signal("dragged"):
+			zone.dragged.connect(Callable(_on_drag_started).bind(zone))
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _drag_data == null:
+	if _state == State.DEFAULT:
 		return
 	
 	if event is InputEventScreenDrag:
-		pass
+		_on_dragged(event.position, _drag_data, _drag_zone)
 	elif event is InputEventScreenTouch and not event.is_pressed():
-		if _drop_zone.can_drop(event.position, _drag_data):
-			_drop_zone.drop(event.position, _drag_data)
-			_drag_zone.dropped(_drag_data)
-		else:
-			_drag_zone.drag_canceled(_drag_data)
-		_drag_data = null
+		_on_dropped(event.position, _drag_data, _drag_zone)
 
 
-func _on_dragged(data: Variant) -> void:
-	if _drag_data == null:
-		_drag_data = data
-		_drag_zone.drag_started(_drag_data)
+func cancel() -> void:
+	_drag_data = null
+	_drag_zone = null
+	_state = State.DEFAULT
+
+
+func _on_drag_started(drag_data: Variant, drag_zone: Node) -> void:
+	if _state != State.DEFAULT:
+		return
+	
+	_state = State.DRAGGED
+	_drag_data = drag_data
+	_drag_zone = drag_zone
+	for zone in _drag_and_drop_zones:
+		if zone.has_method("drag_started"):
+			zone.drag_started(_drag_data, _drag_zone)
+
+
+func _on_dragged(position: Vector2, drag_data: Variant, drag_zone: Node) -> void:
+	for zone in _drag_and_drop_zones:
+		if zone.has_method("dragged"):
+			zone.dragged(position, drag_data, drag_zone)
+
+
+func _on_dropped(position: Vector2, drag_data: Variant, drag_zone: Node) -> void:
+	var dropped: bool = false
+	for zone in _drag_and_drop_zones:
+		if (
+			zone.has_method("can_drop") 
+			and zone.has_method("drop") 
+			and zone.can_drop(position, drag_data, drag_zone)
+		):
+			zone.drop(position, drag_data, drag_zone)
+			dropped = true
+			break
+	
+	var method_to_call: String = "dropped" if dropped else "drag_canceled"
+	for zone in _drag_and_drop_zones:
+		if zone.has_method(method_to_call):
+			zone.call(method_to_call, drag_data, drag_zone)
+	
+	cancel()

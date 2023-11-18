@@ -2,7 +2,6 @@ class_name Station
 extends Area2D
 
 
-signal dragged
 signal building_entered(building)
 signal building_exited(building)
 
@@ -33,11 +32,6 @@ func init(_position: Vector2, sprite_frames: SpriteFrames, zone_radius: float) -
 
 func move_to(new_position: Vector2) -> void:
 	position = new_position
-
-
-func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventScreenDrag:
-		emit_signal("dragged")
 
 
 func _on_building_entered(building: Building) -> void:

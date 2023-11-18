@@ -33,17 +33,16 @@ func is_completed() -> bool:
 	return true
 
 
-func can_drop(_global_position: Vector2, _data: Variant) -> bool:
+func can_drop(_global_position: Vector2, _drag_data: Variant, _drag_zone: Node) -> bool:
 	return _get_spot(_global_position) != null
 
 
-func drop(_global_position: Vector2, data: Variant) -> void:
-	if data is StationDefinition:
-		var type: StationModel.Type = data.get_type()
+func drop(_global_position: Vector2, drag_data: Variant, _drag_zone: Node) -> void:
+	if drag_data is StationDefinition:
+		var type: StationModel.Type = drag_data.get_type()
 		var station_resource: StationResource = Stations.get_resource_by_type(type)
 		var station: Station = _station_scene.instantiate()
 		_stations_node.add_child(station)
-		station.dragged.connect(Callable(_on_station_dragged).bind(station))
 		station.building_entered.connect(Callable(_on_station_building_entered).bind(station))
 		station.init(
 			to_local(_global_position), 
@@ -51,6 +50,12 @@ func drop(_global_position: Vector2, data: Variant) -> void:
 			station_resource.radius
 		)
 		_get_spot(_global_position).add_station(station)
+	if drag_data is Spot:
+		var spot: Spot = drag_data
+		var new_spot: Spot = _get_spot(_global_position)
+		var station: Station = spot.get_station()
+		spot.remove_station()
+		new_spot.add_station(station)
 
 
 func clear() -> void:
@@ -80,6 +85,7 @@ func start(level_id: String) -> void:
 		var spot_resource: SpotResource = Spots.get_resource_by_type(level_spot_resource.type)
 		var spot: Spot = _spot_scene.instantiate()
 		_spots_node.add_child(spot)
+		spot.dragged.connect(Callable(_on_spot_dragged).bind(spot))
 		spot.init(
 			level_spot_resource.position, 
 			spot_resource.sprite_frames
@@ -97,8 +103,9 @@ func _on_level_start_request(level_id: String) -> void:
 	start(level_id)
 
 
-func _on_station_dragged(station: Station) -> void:
-	emit_signal("dragged", station)
+func _on_spot_dragged(spot: Spot) -> void:
+	if spot.has_station():
+		emit_signal("dragged", spot)
 
 
 func _on_station_building_entered(_building: Building, _station: Station) -> void:

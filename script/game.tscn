@@ -46,5 +46,4 @@ visible = false
 layout_mode = 1
 
 [node name="DragAndDrop" parent="." instance=ExtResource("4_jwuvk")]
-_drag_zone_path = NodePath("../InterfaceLayer/Interface/StationList")
-_drop_zone_path = NodePath("../LevelLayer/Level")
+_drag_and_drop_zone_paths = Array[NodePath]([NodePath("../LevelLayer/Level"), NodePath("../InterfaceLayer/Interface/StationList")])

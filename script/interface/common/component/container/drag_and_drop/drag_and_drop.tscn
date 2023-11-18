@@ -4,3 +4,4 @@
 
 [node name="DragAndDrop" type="Node"]
 script = ExtResource("1_mydpn")
+_drag_and_drop_zone_paths = Array[NodePath]([NodePath("")])
