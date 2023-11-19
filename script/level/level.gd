@@ -45,6 +45,7 @@ func drop(_global_position: Vector2, drag_data: Variant, _drag_zone: Node) -> vo
 		_stations_node.add_child(station)
 		station.building_entered.connect(Callable(_on_station_building_entered).bind(station))
 		station.init(
+			type,
 			to_local(_global_position), 
 			station_resource.sprite_frames,
 			station_resource.radius

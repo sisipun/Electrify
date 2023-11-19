@@ -10,6 +10,12 @@ signal dragged(data)
 
 @onready var _definitions_node: Control = get_node(_definitions_node_path)
 
+var _type_to_definition: Dictionary
+
+
+func _ready() -> void:
+	_type_to_definition = {}
+
 
 func init(level_station_resources: Array[LevelStationResource]) -> void:
 	clear()
@@ -23,6 +29,7 @@ func init(level_station_resources: Array[LevelStationResource]) -> void:
 			station_resource.definition_image, 
 			level_station_resource.count
 		)
+		_type_to_definition[definition.get_type()] = definition
 
 
 func clear() -> void:
@@ -38,6 +45,11 @@ func drag_started(drag_data: Variant, _drag_zone: Node) -> void:
 func drag_canceled(drag_data: Variant, _drag_zone: Node) -> void:
 	if drag_data is StationDefinition:
 		drag_data.drag_canceled()
+	if drag_data is Spot:
+		var station: Station = drag_data.get_station()
+		var station_type: StationModel.Type = station.get_type()
+		_type_to_definition[station_type].drag_canceled()
+		station.queue_free()
 
 
 func dropped(drag_data: Variant, _drag_zone: Node) -> void:
