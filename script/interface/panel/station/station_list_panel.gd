@@ -49,7 +49,6 @@ func drag_canceled(drag_data: Variant, _drag_zone: Node) -> void:
 		var station: Station = drag_data.get_station()
 		var station_type: StationModel.Type = station.get_type()
 		_type_to_definition[station_type].drag_canceled()
-		station.queue_free()
 
 
 func dropped(drag_data: Variant, _drag_zone: Node) -> void:

@@ -25,7 +25,7 @@ func init(type: StationModel.Type, image: Texture, count: int) -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventScreenDrag:
+	if _count > 0 and event is InputEventScreenDrag:
 		emit_signal("dragged")
 
 

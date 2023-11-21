@@ -16,7 +16,7 @@ signal dragged(data)
 @onready var _buildings_node: Node2D = get_node(_buildings_node_path)
 @onready var _spots_node: Node2D = get_node(_spots_node_path)
 
-var _level_id: String
+var _level_model: LevelModel
 var _selected_station: Station
 
 
@@ -33,32 +33,6 @@ func is_completed() -> bool:
 	return true
 
 
-func can_drop(_global_position: Vector2, _drag_data: Variant, _drag_zone: Node) -> bool:
-	return _get_spot(_global_position) != null
-
-
-func drop(_global_position: Vector2, drag_data: Variant, _drag_zone: Node) -> void:
-	if drag_data is StationDefinition:
-		var type: StationModel.Type = drag_data.get_type()
-		var station_resource: StationResource = Stations.get_resource_by_type(type)
-		var station: Station = _station_scene.instantiate()
-		_stations_node.add_child(station)
-		station.building_entered.connect(Callable(_on_station_building_entered).bind(station))
-		station.init(
-			type,
-			to_local(_global_position), 
-			station_resource.sprite_frames,
-			station_resource.radius
-		)
-		_get_spot(_global_position).add_station(station)
-	if drag_data is Spot:
-		var spot: Spot = drag_data
-		var new_spot: Spot = _get_spot(_global_position)
-		var station: Station = spot.get_station()
-		spot.remove_station()
-		new_spot.add_station(station)
-
-
 func clear() -> void:
 	for spot in _spots_node.get_children():
 		spot.queue_free()
@@ -70,7 +44,7 @@ func clear() -> void:
 
 
 func start(level_id: String) -> void:
-	_level_id = level_id
+	_level_model = Levels.get_model_by_id(level_id)
 	var level_resource: LevelResource = Levels.get_resource_by_id(level_id)
 	for level_building_resource in level_resource.buildings:
 		var building_resource: BuildingResource = Buildings.get_resource_by_type(level_building_resource.type)
@@ -92,7 +66,42 @@ func start(level_id: String) -> void:
 			spot_resource.sprite_frames
 		)
 	
-	Events.emit_signal("level_started", _level_id)
+	Events.emit_signal("level_started", _level_model.get_level_id())
+
+
+func can_drop(_global_position: Vector2, _drag_data: Variant, _drag_zone: Node) -> bool:
+	return _get_spot(_global_position) != null
+
+
+func drop(_global_position: Vector2, drag_data: Variant, _drag_zone: Node) -> void:
+	if drag_data is StationDefinition:
+		var type: StationModel.Type = drag_data.get_type()
+		var station_resource: StationResource = Stations.get_resource_by_type(type)
+		var station: Station = _station_scene.instantiate()
+		_stations_node.add_child(station)
+		station.building_entered.connect(Callable(_on_station_building_entered).bind(station))
+		station.init(
+			type,
+			to_local(_global_position), 
+			station_resource.sprite_frames,
+			station_resource.radius
+		)
+		_get_spot(_global_position).add_station(station)
+		_level_model.spawn_station(type)
+	if drag_data is Spot:
+		var spot: Spot = drag_data
+		var new_spot: Spot = _get_spot(_global_position)
+		var station: Station = spot.get_station()
+		spot.remove_station()
+		new_spot.add_station(station)
+
+
+func drag_canceled(drag_data: Variant, _drag_zone: Node) -> void:
+	if drag_data is Spot:
+		var station: Station = drag_data.get_station()
+		var station_type: StationModel.Type = station.get_type()
+		_level_model.return_station(station_type)
+		station.queue_free()
 
 
 func _on_window_size_changed() -> void:
@@ -111,7 +120,7 @@ func _on_spot_dragged(spot: Spot) -> void:
 
 func _on_station_building_entered(_building: Building, _station: Station) -> void:
 	if is_completed():
-		Events.emit_signal("level_completed", _level_id, 3)
+		Events.emit_signal("level_completed", _level_model.get_level_id(), _level_model.get_stars())
 
 
 func _get_spot(_global_position: Vector2) -> Spot:
