@@ -2,6 +2,10 @@ class_name Building
 extends Area2D
 
 
+signal activated
+signal deactivated
+
+
 @export_node_path("AnimatedSprite2D") var _body_path: NodePath
 @export_node_path("AnimatedSprite2D") var _effect_path: NodePath
 
@@ -29,13 +33,15 @@ func is_active() -> bool:
 func increase_power(value: int) -> void:
 	_power += value
 	if is_active():
-		_show_active()
+		_body.play("active")
+		emit_signal("activated")
 
 
 func decrease_power(value: int) -> void:
 	_power -= value
 	if not is_active():
-		_show_inactive()
+		_body.play("default")
+		emit_signal("deactivated")
 
 
 func show_preview_effect() -> void:
@@ -44,11 +50,3 @@ func show_preview_effect() -> void:
 
 func show_default_effect() -> void:
 	_effect.play("default")
-
-
-func _show_active() -> void:
-	_body.play("active")
-
-
-func _show_inactive() -> void:
-	_body.play("default")

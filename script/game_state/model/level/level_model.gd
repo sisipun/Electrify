@@ -2,28 +2,46 @@ class_name LevelModel
 extends Object
 
 
-var _level_id: String
+signal finished(stars)
+
+
 var _two_star_condition: int
 var _three_star_condition: int
+
 var _stations_left: Dictionary
+var _buildings: Array[BuildingModel]
+var _spots: Array[SpotModel]
 
 
 func _init(
-	level_id: String,
 	two_star_condition: int,
 	three_star_condition: int,
-	stations: Array[LevelStationResource]
+	stations: Array[LevelStationResource],
+	buildings: Array[LevelBuildingResource],
+	spots: Array[LevelSpotResource]
 ) -> void:
-	_level_id = level_id
 	_two_star_condition = two_star_condition
 	_three_star_condition = three_star_condition
 	_stations_left = {}
 	for station in stations:
 		_stations_left[station.type] = station.count
+	_buildings = []
+	for building in buildings:
+		var building_model: BuildingModel = BuildingModel.new(building.type, building.position)
+		building_model.activated.connect(_on_building_activated)
+		_buildings.append(building_model)
+	_spots = []
+	for spot in spots:
+		var spot_model: SpotModel = SpotModel.new(spot.type, spot.position)
+		_spots.append(spot_model)
 
 
-func get_level_id() -> String:
-	return _level_id
+func get_buildings() -> Array[BuildingModel]:
+	return _buildings
+
+
+func get_spots() -> Array[SpotModel]:
+	return _spots
 
 
 func get_stars() -> int:
@@ -46,3 +64,8 @@ func spawn_station(type: StationModel.Type) -> void:
 
 func return_station(type: StationModel.Type) -> void:
 	_stations_left[type] += 1
+
+
+func _on_building_activated() -> void:
+	if _buildings.all(func(it): return it.is_active()):
+		emit_signal("finished", get_stars())

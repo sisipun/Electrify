@@ -3,6 +3,8 @@ extends Area2D
 
 
 signal dragged
+signal station_added
+signal station_removed
 
 
 @export_node_path("CollisionShape2D") var _shape_node_path: NodePath
@@ -43,7 +45,9 @@ func get_station() -> Station:
 func add_station(station: Station) -> void:
 	_station = station
 	_station.move_to(position)
+	emit_signal("station_added")
 
 
 func remove_station() -> void:
 	_station = null
+	emit_signal("station_removed")

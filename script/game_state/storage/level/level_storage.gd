@@ -28,10 +28,11 @@ func get_resource_by_id(id: String) -> LevelResource:
 func get_model_by_id(id: String) -> LevelModel:
 	var resource: LevelResource = get_resource_by_id(id)
 	return LevelModel.new(
-		id, 
 		resource.get_two_star_condition(),
 		resource.get_three_star_condition(),
-		resource.stations
+		resource.stations,
+		resource.buildings,
+		resource.spots
 	)
 
 
